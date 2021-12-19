@@ -1,0 +1,22 @@
+{
+  "logo":"https://telegra.ph/file/aa9669af4872253ca2c51.jpg",
+  "name": "MEMBER TAGGER",
+  "description": "A Member Tagger Bot For Telegram Groups Made With love By Ankit",
+  "env": {
+    "TOKEN": {
+      "description": "Enter bot token Get It From @botfather.",
+      "value": ""
+    },
+    "APP_ID": {
+      "description": "Get this value from my.telegram.org! Please do not steal.",
+      "value": "7847086"
+    },
+    "API_HASH": {
+      "description": "Get this value from my.telegram.org! Please do not steal.",
+      "value": "10ee3493b91fa1a69189e4830390a957"
+    }
+  },
+  "buildpacks": [{
+    "url": "https://github.com/heroku/heroku-buildpack-python.git"
+  }]
+}
