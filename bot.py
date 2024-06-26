@@ -24,14 +24,14 @@ moment_worker = []
 #start
 @ankitbot.on(events.NewMessage(pattern="^/start$"))
 async def start(event):
-  await event.reply("^_^ Hey, Welcome To TAG Help Bot's Menu\nI can tag 15,000 Members in Group and 300 Members In Channel.\nNeed Help /help ",
+  await event.reply("^_^ Merhaba Dostum Ben Megruw tag botuyum Menu\nI can tag 15,000 Members in Group and 300 Members In Channel.\nNeed Help /help ",
                     buttons=(
                       [
-                         Button.url('📣 UPDATES', 'https://t.me/GODOPSUPPORT'), 
-                         Button.url('⭐SUPPORT', 'https://t.me/GODOPCHAT'), 
+                         Button.url('📣 YÖNETİCİ', 'https://t.me/megruv'), 
+                         Button.url('⭐SUPPORT', 'https://t.me/megruwsohbet'), 
                       ], 
                       [
-                        Button.url('➕ ADD ME TO YOUR GROUP', 'https://t.me/GODTAGGERBOT?startgroup=true'),   
+                        Button.url('➕ ADD ME TO YOUR GROUP', 'https://t.me/MEGRUVTAGGERBOT?startgroup=true'),   
                       ]
                    ), 
                     link_preview=False
@@ -44,11 +44,11 @@ async def help(event):
   await event.reply(helptext,
                     buttons=(
                       [
-                         Button.url('📣 UPDATES', 'https://t.me/GODOPSUPPORT'), 
-                         Button.url('⭐SUPPORT', 'https://t.me/GODOPCHAT'), 
+                         Button.url('📣 SAHİP', 'https://t.me/MEGRUV'), 
+                         Button.url('⭐SUPPORT', 'https://t.me/MEGRUWSOHBET'), 
                       ], 
                       [
-                        Button.url('➕ ADD ME TO YOUR GROUP', 'https://t.me/GODTAGGERBOT?startgroup=true'),   
+                        Button.url('➕ ADD ME TO YOUR GROUP', 'https://t.me/MEGRUVTAGGERBOT?startgroup=true'),   
                       ]
                    ), 
                     link_preview=False
@@ -69,7 +69,7 @@ async def mentionall(event):
   async for admin in ankitbot.iter_participants(event.chat_id, filter=ChannelParticipantsAdmins):
     admins.append(admin.id)
   if not event.sender_id in admins:
-    return await event.respond("Only Admin can use it.")
+    return await event.respond("")
   
   if event.pattern_match.group(1):
     mode = "text_on_cmd"
@@ -87,18 +87,18 @@ async def mentionall(event):
   if mode == "text_on_cmd":
     moment_worker.append(event.chat_id)
     usrnum = 0
-    usrtxt = ""
+    usrtxt = "Sadece Admin kullanabilir."
     async for usr in ankitbot.iter_participants(event.chat_id):
       usrnum += 1
       usrtxt += f"[{usr.first_name}](tg://user?id={usr.id}) "
       if event.chat_id not in moment_worker:
-        await event.respond("Stopped!")
+        await event.respond("Durdum Dostum!")
         return
       if usrnum == 5:
         await ankitbot.send_message(event.chat_id, f"{usrtxt}\n\n{msg}")
         await asyncio.sleep(2)
         usrnum = 0
-        usrtxt = ""
+        usrtxt = "Sadece Admin kullanabilir."
         
   
   if mode == "text_on_reply":
@@ -110,7 +110,7 @@ async def mentionall(event):
       usrnum += 1
       usrtxt += f"[{usr.first_name}](tg://user?id={usr.id}) "
       if event.chat_id not in moment_worker:
-        await event.respond("Stopped")
+        await event.respond("Durdum Dostum")
         return
       if usrnum == 5:
         await ankitbot.send_message(event.chat_id, usrtxt, reply_to=msg)
@@ -121,21 +121,21 @@ async def mentionall(event):
 
 # Cancle 
 
-@ankitbot.on(events.NewMessage(pattern="^/cancel$"))
+@ankitbot.on(events.NewMessage(pattern="^/dur$"))
 async def cancel_spam(event):
   if not event.chat_id in spam_chats:
-    return await event.respond('__There is no proccess on going...__')
+    return await event.respond('__Emrin olur paşam ...__')
   else:
     try:
       spam_chats.remove(event.chat_id)
     except:
       pass
-    return await event.respond('**__Stoped__**\n\n**__Powered By:__ @GODOPSUPPORT **')
+    return await event.respond('**__Stoped__**\n\n**__Powered By:__ @Megruvsohbet **')
 
 
 
 
 
 print("Started Successfully Join Support")
-print("¯\_(ツ)_/¯ Need Help Join @GODOPSUPPORT")
+print("¯\_(ツ)_/¯ Need Help Join @megruwsohbet")
 ankitbot.run_until_disconnected()
